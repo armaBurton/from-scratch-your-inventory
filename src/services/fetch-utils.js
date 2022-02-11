@@ -20,3 +20,11 @@ export async function logout() {
 
   return window.location = '../';
 }
+
+export async function createWeapon(weapon){
+  const response = await client
+    .from('inventory')
+    .insert([weapon]);
+
+  return checkError(response);
+}

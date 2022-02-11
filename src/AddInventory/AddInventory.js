@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../AddInventory.css';
+import { createWeapon } from '../services/fetch-utils';
 // import { useHistory } from 'react-router-dom';
 
 export default function AddInventory(){
@@ -64,8 +65,21 @@ export default function AddInventory(){
   
   async function handleSubmit() {
 
-    console.log(speed);
-
+    await createWeapon({
+      name,
+      rarity,
+      item_level: itemLevel,
+      hand,
+      type,
+      bind,
+      min_damage: minDamage,
+      max_damage: maxDamage,
+      durability,
+      level_req:levelReq,
+      gold, 
+      silver,
+      copper
+    });
   }
 
   return (
