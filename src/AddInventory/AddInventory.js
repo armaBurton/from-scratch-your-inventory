@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import '../AddInventory.css';
+// import { useHistory } from 'react-router-dom';
 
-export default function AddInventory({ user }){
+export default function AddInventory(){
   const [name, setName] = useState('');
   const [rarity, setRarity] = useState('');
   const [type, setType] = useState('');
@@ -11,37 +12,65 @@ export default function AddInventory({ user }){
   const [minDamage, setMinDamage] = useState(0);
   const [maxDamage, setMaxDamage] = useState(minDamage);
   const [speed, setSpeed] = useState(3.6);
-  // const [stats, setStats] = useState([]);
-  const [durability, setDurability] = useState([]);
+  const [dps, setDps] = useState(0);
+  const [stats, setStats] = useState([]);
+  const [durability, setDurability] = useState(100);
   // const [magicEffect, setMagicEffect] = useState('');
-  const [levelReq, setLevelReq] = useState('');
+  const [levelReq, setLevelReq] = useState(1);
   const [gold, setGold] = useState(0);
   const [silver, setSilver] = useState(0);
   const [copper, setCopper] = useState(0);
+  // const history = useHistory();
 
   function getSpeed(hand, type){
     console.log(type);
 
+    setSpeed(1.8);
     if (type === 'Dagger'){
-      setSpeed(1.8);
-      console.log(true);
+      console.log(speed);
     }
 
 
   }
 
+  useEffect(() => {
+    console.log(speed, dps);
+    handleSubmit();
+  }, [dps]);
 
-  async function handleSubmit(e) {
-    e.preventDefault;
-    getSpeed('hand', 'Dagger');
+  function calculateDPS() {
+    const sum = (minDamage + maxDamage);
+    const divSpeed = sum / speed;
+    const average = divSpeed / 2;
+    setDps(average);
+  }
+
+  function calculateState(e){
+    e.preventDefault();
+    if (type === 'Dagger'){
+      setSpeed(1.8);
+    } else if (type === 'Wand'){
+      setSpeed(2.0);
+    } else if (type === 'Crossbow' || type === 'Bow' || type === 'Gun') {
+      setSpeed(3.0);
+    } else if (hand === 'One-hand'){
+      setSpeed(2.6);
+    } else if (hand === 'Two-hand'){
+      setSpeed(3.6);
+    }
+
+    calculateDPS();
+  }
+  
+  async function handleSubmit() {
+
     console.log(speed);
 
   }
 
-
   return (
     <div className='create'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={calculateState}>
         <h1>RPG Weapon Creator</h1>
         <label>
           Name:
@@ -94,19 +123,23 @@ export default function AddInventory({ user }){
         </label>
         <label>
           Min Damage:
-          <input required value={minDamage} onChange={e => setMinDamage(e.target.value)} />
+          <input required type='number' placeholder={minDamage} onChange={e => setMinDamage(e.target.value)} />
         </label>
         <label>
           Max Damage:
-          <input required value={maxDamage} onChange={e => setMaxDamage(e.target.value)} />
+          <input required type='number' placeholder={maxDamage} onChange={e => setMaxDamage(e.target.value)} />
         </label>
         <label>
           Durability:
-          <input required value={durability} onChange={e => setDurability(e.target.value)} />
+          <input required type='number' value={durability} onChange={e => setDurability(e.target.value)} />
         </label>
         <label>
           Character Level Required:
           <input type="number" required value={levelReq} onChange={e => setLevelReq(e.target.value)}/>
+        </label>
+        <label>
+          Description:
+          <textarea className='description' />
         </label>
         <div className='value'>
           <label className='column'>
