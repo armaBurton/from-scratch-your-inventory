@@ -119,7 +119,7 @@ form{
 }
 
 .money{
-  width: 50px;
+  width: 77px;
 }
 
 .column{
@@ -130,5 +130,6 @@ form{
 .value{
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   gap: 10px;
 }
