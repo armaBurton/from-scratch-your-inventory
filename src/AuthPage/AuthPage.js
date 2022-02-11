@@ -8,20 +8,23 @@ export default function AuthPage({ setUser }){
   async function handleSignIn(e){
     e.preventDefault();
     const user = await signIn(email, password);
+
+    console.log(user);
     setUser(user);
   }
   
   async function handleSignUp(e){
     e.preventDefault();
     const user = await signUp(email, password);
+    console.log(user);
     setUser(user);
   }
 
   return <div className='auth'>
     <h2><em>Inventorizo</em></h2>
 
-    <form onSubmit={handleSignIn}>
-      <label>
+    <form >
+      <label onSubmit={handleSignIn}>
         Email
         <input required value={email} type='email' name='email' onChange={e => setEmail(e.target.value)} />
       </label>

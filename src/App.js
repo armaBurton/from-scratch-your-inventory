@@ -1,16 +1,35 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
+  NavLink,
   Link,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
 import AuthPage from './AuthPage/AuthPage';
+import Inventory from './Inventory/Inventory';
+import AddInventory from './AddInventory/AddInventory';
+import { getUser, logout } from './services/fetch-utils';
+
 
 function App() {
   const [user, setUser] = useState('');
+  
+
+  useEffect(() => {
+    async function getUserData(){
+      const data = await getUser();
+      setUser(data);
+    }
+    getUserData();
+  }, []);
+
+  function handleLogout(){
+    logout();
+    setUser('');
+  }
 
   return <Router>
     <div className="App">
@@ -18,18 +37,32 @@ function App() {
         !user
           ? <header></header>
           : <header>
-            <Link to='#'>Dumb Link</Link>
-            <Link to='#'>Dummy Link</Link>
-            <Link to='#'>Dumber Link</Link>
+            <NavLink to='/inventory'>Inventory</NavLink>
+            <NavLink to='/add-inventory'>Add Inventory</NavLink>
+            <NavLink onClick={handleLogout} to='/'>Logout</NavLink>
           </header>
       }
       <main>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             {
               user
-                ? <Redirect to='/inventory' />
+                ? <Redirect to='/inventory' user={user}/>
                 : <AuthPage setUser={setUser} />
+            }
+          </Route>
+          <Route exact path='/inventory'>
+            {
+              user
+                ? <Inventory user={user}/>
+                : <Redirect to='/' />
+            }
+          </Route>
+          <Route exact path='/add-inventory'>
+            {
+              user
+                ? <AddInventory user={user}/>
+                : <Redirect to='/' />
             }
           </Route>
         </Switch>

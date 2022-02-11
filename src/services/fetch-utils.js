@@ -1,7 +1,7 @@
 import { client, checkError } from './client';
 
 export async function getUser(){
-  return client.auth.signUp();
+  return client.auth.session();
 }
 
 export async function signUp(email, password){
@@ -12,6 +12,11 @@ export async function signUp(email, password){
 
 export async function signIn(email, password){
   const response = await client.auth.signIn({ email, password });
-
   return response.user;
+}
+
+export async function logout() {
+  await client.auth.signOut();
+
+  return window.location = '../';
 }
