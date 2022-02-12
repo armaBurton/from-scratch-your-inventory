@@ -43,8 +43,7 @@ export default function WeaponDetail(){
         break;
     }
     handleImage();
-
-  }, [params]);
+  }, [weapon.rarity]);
 
   function handleImage(){
     if (weapon.type === 'Sword' || weapon.type === 'Mace' || weapon.type === 'Axe') {
@@ -60,7 +59,7 @@ export default function WeaponDetail(){
     <div className="weapon-detail-card" onClick={() => history.push('/')}>
       <img className='weapon-image' src={`/${imageName}`} alt={imageName} />
       <div className="details">
-        <h1 className="name" style={{ color : color }}>{weapon.name}</h1>
+        <h1 className="detail-name" style={{ color : color }}>{weapon.name}</h1>
         <p className='item-level'>Item Level {weapon.item_level}</p>
         <p className="bop">{weapon.bind}</p>
         <div className="row-space-between">
