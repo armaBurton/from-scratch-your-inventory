@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   NavLink,
-  Link,
   Switch,
   Route,
   Redirect,
@@ -14,11 +13,9 @@ import AddInventory from './AddInventory/AddInventory';
 import { getUser, logout } from './services/fetch-utils';
 import WeaponDetail from './WeaponDetail/WeaponDetail';
 
-
 function App() {
   const [user, setUser] = useState('');
   
-
   useEffect(() => {
     async function getUserData(){
       const data = await getUser();

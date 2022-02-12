@@ -16,6 +16,7 @@ textarea {
 
 .money{
   margin-left: 0;
+  width: 77px;;
 }
 
 .create{
@@ -26,6 +27,7 @@ textarea {
   width: 100%;
   display: flex;
   justify-content: center;
+  color: white;
 }
 
 .value{
@@ -34,3 +36,4 @@ textarea {
   justify-content: flex-end;
   gap: 10px;
 }
+

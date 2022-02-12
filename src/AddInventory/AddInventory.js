@@ -14,10 +14,8 @@ export default function AddInventory(){
   const [maxDamage, setMaxDamage] = useState(minDamage);
   const [speed, setSpeed] = useState(3.6);
   const [dps, setDps] = useState();
-  // const [stats, setStats] = useState([]);
   const [durability, setDurability] = useState(100);
   const [description, setDescription] = useState('');
-  // const [magicEffect, setMagicEffect] = useState('');
   const [levelReq, setLevelReq] = useState(1);
   const [gold, setGold] = useState(0);
   const [silver, setSilver] = useState(0);
@@ -146,7 +144,7 @@ export default function AddInventory(){
         </label>
         <label>
           Description:
-          <textarea className='description' value={description} onChange={e => setDescription(e.target.value)} />
+          <textarea className='description-text' value={description} onChange={e => setDescription(e.target.value)} />
         </label>
         <div className='value'>
           <label className='column'>
