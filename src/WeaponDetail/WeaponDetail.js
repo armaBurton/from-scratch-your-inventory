@@ -67,7 +67,7 @@ export default function WeaponDetail(){
           <p className="shape">{weapon.type}</p>
         </div><div className="row-space-between">
           <p className="min-max">{weapon.min_damage} - {weapon.max_damage} Damage</p>
-          <p className="speed">Speed {weapon.speed}</p>
+          <p className="speed">Speed {Number.parseFloat(weapon.speed).toFixed(2)}</p>
         </div>
         <p className="dps">({Number.parseFloat(weapon.dps).toFixed(2)} damage per second)</p>
         <p className="durability">Durability {weapon.durability}/{weapon.durability}</p>
