@@ -17,7 +17,7 @@ export default function WeaponDetail(){
     }
 
     getWeapon();
-  }, []);
+  }, [params]);
 
   const [color, setColor] = useState('');
 
@@ -42,25 +42,19 @@ export default function WeaponDetail(){
         setColor('orange');
         break;
     }
-    console.log('||', weapon);
     handleImage();
 
-  }, [weapon]);
+  }, [params]);
 
   function handleImage(){
-    console.log('|| handleImage');
-    if (weapon.type === 'Sword') {
+    if (weapon.type === 'Sword' || weapon.type === 'Mace' || weapon.type === 'Axe') {
       const temp = `${weapon.hand}-${weapon.type}.png`;
-      console.log('||', temp);
+      setImageName(temp);
+    } else {
+      const temp = `${weapon.type}.png`;
       setImageName(temp);
     }
   }
-
-  // useEffect(() => {
-    
-
-    
-  // }, [weapon]);
 
   return (
     <div className="weapon-detail-card" onClick={() => history.push('/')}>
@@ -74,13 +68,13 @@ export default function WeaponDetail(){
           <p className="shape">{weapon.type}</p>
         </div><div className="row-space-between">
           <p className="min-max">{weapon.min_damage} - {weapon.max_damage} Damage</p>
-          <p className="speed">Speed {weapon.speed.toFixed(2)}</p>
+          <p className="speed">Speed {weapon.speed}</p>
         </div>
-        <p className="dps">({weapon.dps.toFixed(2)} damage per second)</p>
+        <p className="dps">({Number.parseFloat(weapon.dps).toFixed(2)} damage per second)</p>
         <p className="durability">Durability {weapon.durability}/{weapon.durability}</p>
         <p className="level-req">Requires Level {weapon.level_req}</p>
+        <p className="description">{weapon.description}</p>
         <p className="sell-price">Sell Price <span className="gold">{weapon.gold}g</span> <span className="silver">{weapon.silver}s</span> <span className="copper">{weapon.copper}c</span></p>
-
       </div>
     </div>
   );
