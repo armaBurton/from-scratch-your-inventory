@@ -63,6 +63,8 @@ export default function AddInventory(){
       bind,
       min_damage: minDamage,
       max_damage: maxDamage,
+      speed,
+      dps: dps,
       durability,
       level_req:levelReq,
       gold, 
@@ -112,7 +114,6 @@ export default function AddInventory(){
             <option>Axe</option>
             <option>Mace</option>
             <option>Sword</option>
-            <option>Stave</option>
             <option>Bow</option>
             <option>Crossbow</option>
             <option>Gun</option>

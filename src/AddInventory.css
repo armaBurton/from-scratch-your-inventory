@@ -19,5 +19,18 @@ textarea {
 }
 
 .create{
-  margin-top: 150px;
+  margin-top: 50px;
+}
+
+.create{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.value{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
 }

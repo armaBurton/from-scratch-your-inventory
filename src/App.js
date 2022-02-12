@@ -12,6 +12,7 @@ import AuthPage from './AuthPage/AuthPage';
 import Inventory from './Inventory/Inventory';
 import AddInventory from './AddInventory/AddInventory';
 import { getUser, logout } from './services/fetch-utils';
+import WeaponDetail from './WeaponDetail/WeaponDetail';
 
 
 function App() {
@@ -55,6 +56,13 @@ function App() {
             {
               user
                 ? <Inventory user={user}/>
+                : <Redirect to='/' />
+            }
+          </Route>
+          <Route exact path='/inventory/:id'>
+            {
+              user
+                ? <WeaponDetail />
                 : <Redirect to='/' />
             }
           </Route>
