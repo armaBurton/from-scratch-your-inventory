@@ -32,7 +32,7 @@ main{
 
 .weapon-image{
   height: 100%;
-  width: 484px;
+  min-width: 484px;
   background-color: yellow;
   object-fit: cover;
 }
