@@ -1,42 +1,31 @@
 import { useEffect, useState } from 'react';
 import '../AddInventory.css';
 import { createWeapon } from '../services/fetch-utils';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function AddInventory(){
-  const [name, setName] = useState('');
-  const [rarity, setRarity] = useState('');
-  const [type, setType] = useState('');
+  const [name, setName] = useState('Unnamed Weapon');
+  const [rarity, setRarity] = useState('Poor');
+  const [type, setType] = useState('Dagger');
   const [itemLevel, setItemLevel] = useState(0);
-  const [bind, setBind] = useState('');
+  const [bind, setBind] = useState('No Bind');
   const [hand, setHand] = useState(`One-Hand`);
   const [minDamage, setMinDamage] = useState(0);
   const [maxDamage, setMaxDamage] = useState(minDamage);
   const [speed, setSpeed] = useState(3.6);
-  const [dps, setDps] = useState(0);
-  const [stats, setStats] = useState([]);
+  const [dps, setDps] = useState();
+  // const [stats, setStats] = useState([]);
   const [durability, setDurability] = useState(100);
+  const [description, setDescription] = useState('');
   // const [magicEffect, setMagicEffect] = useState('');
   const [levelReq, setLevelReq] = useState(1);
   const [gold, setGold] = useState(0);
   const [silver, setSilver] = useState(0);
   const [copper, setCopper] = useState(0);
-  // const history = useHistory();
-
-  function getSpeed(hand, type){
-    console.log(type);
-
-    setSpeed(1.8);
-    if (type === 'Dagger'){
-      console.log(speed);
-    }
-
-
-  }
+  const history = useHistory();
 
   useEffect(() => {
-    console.log(speed, dps);
-    handleSubmit();
+    dps && handleSubmit();
   }, [dps]);
 
   function calculateDPS() {
@@ -78,8 +67,11 @@ export default function AddInventory(){
       level_req:levelReq,
       gold, 
       silver,
-      copper
+      copper,
+      description
     });
+
+    history.push('/inventory');
   }
 
   return (
@@ -153,7 +145,7 @@ export default function AddInventory(){
         </label>
         <label>
           Description:
-          <textarea className='description' />
+          <textarea className='description' value={description} onChange={e => setDescription(e.target.value)} />
         </label>
         <div className='value'>
           <label className='column'>
