@@ -19,7 +19,7 @@ main{
   gap: 10px;
 }
 
-.name{
+.detail-name{
   font-weight: 500;
   font-size: 2rem;
   text-transform: capitalize;
