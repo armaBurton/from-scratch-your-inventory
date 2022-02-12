@@ -29,7 +29,7 @@ export default function WeaponCard({ weapon }){
   }, [weapon]);
 
   return (
-    <Link className='weapon-card-link' to={`.inventory/${weapon.id}`}>
+    <Link className='weapon-card-link' to={`/inventory/${weapon.id}`}>
       <div className="weapon-card">
         <h1 style={{ color: color }}>{weapon.name}</h1>
         <div className="type-damage">
