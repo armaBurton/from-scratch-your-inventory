@@ -36,3 +36,13 @@ export async function getWeapons(){
 
   return checkError(response);
 }
+
+export async function getWeaponById(id){
+  const response = await client
+    .from('inventory')
+    .select()
+    .match({ id })
+    .single();
+
+  return checkError(response);
+}
