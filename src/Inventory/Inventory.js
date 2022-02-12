@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { getWeapons } from '../services/fetch-utils';
 import { useState } from 'react';
+import WeaponCard from '../WeaponCard/WeaponCard';
 
 export default function Inventory(){
   const [weapons, setWeapons] = useState([]);
@@ -13,10 +14,13 @@ export default function Inventory(){
     }
     fetchWeapons();
 
-    console.log(weapons);
   }, []);
 
   return (
-    <div className='inventory'></div>
+    <div className='inventory'>
+      {
+        weapons.map((weapon, i) => <WeaponCard key={weapon + i} weapon={weapon} />)
+      }
+    </div>
   );
 }

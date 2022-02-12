@@ -1,0 +1,31 @@
+main{
+  height: 100%;
+}
+
+.weapon-card-link{
+  font-size: 1rem !important;
+}
+
+.weapon-card{
+  background-color: black;
+  padding: 5px;
+  font-size: .75rem;
+  width: 250px;
+  border: 3px solid orange;
+  border-radius: 3px;
+}
+
+.weapon-card h1{
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.item-level{
+  color: orange;
+  font-weight: 500;
+}
+
+.type-damage{
+  display: flex;
+  justify-content: space-between;
+}
