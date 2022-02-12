@@ -28,3 +28,11 @@ export async function createWeapon(weapon){
 
   return checkError(response);
 }
+
+export async function getWeapons(){
+  const response = await client
+    .from('inventory')
+    .select('*');
+
+  return checkError(response);
+}
