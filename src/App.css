@@ -149,3 +149,11 @@ form{
 .legendary{
   color:orange;
 }
+
+.active{
+  color: orange !important;
+}
+
+.white{
+  color: white;
+}
