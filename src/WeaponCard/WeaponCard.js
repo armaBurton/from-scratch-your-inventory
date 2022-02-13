@@ -34,7 +34,7 @@ export default function WeaponCard({ weapon }){
         <h1 style={{ color: color }}>{weapon.name}</h1>
         <div className="type-damage">
           <p className="weapon-type">{weapon.hand} {weapon.type}</p>
-          <p className="dps">{weapon.dps.toFixed(2)}dps</p>
+          <p className="dps">{Number.parseFloat(weapon.dps).toFixed(2)}dps</p>
         </div>
       </div>
     </Link>

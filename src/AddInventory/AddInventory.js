@@ -22,15 +22,41 @@ export default function AddInventory(){
   const [copper, setCopper] = useState(0);
   const history = useHistory();
 
-  useEffect(() => {
-    dps && handleSubmit();
-  }, [dps, handleSubmit]);
+  // useEffect(() => {
+  async function handleSubmit() {
+
+    await createWeapon({
+      name,
+      rarity,
+      item_level: itemLevel,
+      hand,
+      type,
+      bind,
+      min_damage: Number(minDamage),
+      max_damage: Number(maxDamage),
+      speed: Number(speed),
+      dps: dps,
+      durability,
+      level_req:levelReq,
+      gold, 
+      silver,
+      copper,
+      description
+    });
+
+    history.push('/inventory');
+  }
+
+    // dps && handleSubmit();
+  // });
 
   function calculateDPS() {
     const sum = (Number(minDamage) + Number(maxDamage));
     const divSpeed = Number(sum) / Number(speed);
     const average = Number(divSpeed) / 2;
-    setDps(average);
+    setDps(Number(average));
+
+    dps && handleSubmit();
   }
 
   function calculateState(e){
@@ -50,29 +76,7 @@ export default function AddInventory(){
     calculateDPS();
   }
   
-  async function handleSubmit() {
-
-    await createWeapon({
-      name,
-      rarity,
-      item_level: itemLevel,
-      hand,
-      type,
-      bind,
-      min_damage: minDamage,
-      max_damage: maxDamage,
-      speed,
-      dps: dps,
-      durability,
-      level_req:levelReq,
-      gold, 
-      silver,
-      copper,
-      description
-    });
-
-    history.push('/inventory');
-  }
+  
 
   return (
     <div className='create'>
