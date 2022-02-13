@@ -9,14 +9,12 @@ export default function AuthPage({ setUser }){
     e.preventDefault();
     const user = await signIn(email, password);
 
-    console.log(user);
     setUser(user);
   }
   
   async function handleSignUp(e){
     e.preventDefault();
     const user = await signUp(email, password);
-    console.log(user);
     setUser(user);
   }
 

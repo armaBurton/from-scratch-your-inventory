@@ -24,7 +24,7 @@ export default function AddInventory(){
 
   useEffect(() => {
     dps && handleSubmit();
-  }, [dps]);
+  }, [dps, handleSubmit]);
 
   function calculateDPS() {
     const sum = (Number(minDamage) + Number(maxDamage));

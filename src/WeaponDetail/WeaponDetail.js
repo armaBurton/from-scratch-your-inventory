@@ -42,18 +42,19 @@ export default function WeaponDetail(){
         setColor('orange');
         break;
     }
-    handleImage();
-  }, [weapon.rarity]);
 
-  function handleImage(){
-    if (weapon.type === 'Sword' || weapon.type === 'Mace' || weapon.type === 'Axe') {
-      const temp = `${weapon.hand}-${weapon.type}.png`;
-      setImageName(temp);
-    } else {
-      const temp = `${weapon.type}.png`;
-      setImageName(temp);
+    function handleImage(){
+      if (weapon.type === 'Sword' || weapon.type === 'Mace' || weapon.type === 'Axe') {
+        const temp = `${weapon.hand}-${weapon.type}.png`;
+        setImageName(temp);
+      } else {
+        const temp = `${weapon.type}.png`;
+        setImageName(temp);
+      }
     }
-  }
+
+    handleImage();
+  }, [weapon.rarity, weapon.hand, weapon.type]);
 
   return (
     <div className="weapon-detail-card" onClick={() => history.push('/')}>
