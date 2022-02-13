@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../AddInventory.css';
 import { createWeapon } from '../services/fetch-utils';
 import { useHistory } from 'react-router-dom';
@@ -22,7 +22,6 @@ export default function AddInventory(){
   const [copper, setCopper] = useState(0);
   const history = useHistory();
 
-  // useEffect(() => {
   async function handleSubmit() {
 
     await createWeapon({
@@ -46,9 +45,6 @@ export default function AddInventory(){
 
     history.push('/inventory');
   }
-
-    // dps && handleSubmit();
-  // });
 
   function calculateDPS() {
     const sum = (Number(minDamage) + Number(maxDamage));
