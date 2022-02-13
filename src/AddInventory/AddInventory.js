@@ -27,7 +27,7 @@ export default function AddInventory(){
   }, [dps]);
 
   function calculateDPS() {
-    const sum = (minDamage + maxDamage);
+    const sum = (Number(minDamage) + Number(maxDamage));
     const divSpeed = sum / speed;
     const average = divSpeed / 2;
     setDps(average);

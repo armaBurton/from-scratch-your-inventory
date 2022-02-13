@@ -21,7 +21,7 @@ export default function AuthPage({ setUser }){
   }
 
   return <div className='auth'>
-    <h2><em>Inventorizo</em></h2>
+    <h2><em>RPG Weapon Inventory</em></h2>
 
     <form >
       <label onSubmit={handleSignIn}>
