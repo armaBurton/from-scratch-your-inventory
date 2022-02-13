@@ -35,9 +35,9 @@ function App() {
         !user
           ? <header></header>
           : <header>
-            <NavLink to='/inventory'>Inventory</NavLink>
-            <NavLink to='/add-inventory'>Add Inventory</NavLink>
-            <NavLink onClick={handleLogout} to='/'>Logout</NavLink>
+            <NavLink activeClassName='active' to='/inventory'>Inventory</NavLink>
+            <NavLink activeClassName='active' to='/add-inventory'>Add Inventory</NavLink>
+            <NavLink activeClassName='inactive' onClick={handleLogout} to='/'>Logout</NavLink>
           </header>
       }
       <main>

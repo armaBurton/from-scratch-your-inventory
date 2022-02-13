@@ -24,12 +24,12 @@ export default function AddInventory(){
 
   useEffect(() => {
     dps && handleSubmit();
-  }, [dps]);
+  }, [dps, handleSubmit]);
 
   function calculateDPS() {
-    const sum = (minDamage + maxDamage);
-    const divSpeed = sum / speed;
-    const average = divSpeed / 2;
+    const sum = (Number(minDamage) + Number(maxDamage));
+    const divSpeed = Number(sum) / Number(speed);
+    const average = Number(divSpeed) / 2;
     setDps(average);
   }
 

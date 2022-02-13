@@ -9,19 +9,17 @@ export default function AuthPage({ setUser }){
     e.preventDefault();
     const user = await signIn(email, password);
 
-    console.log(user);
     setUser(user);
   }
   
   async function handleSignUp(e){
     e.preventDefault();
     const user = await signUp(email, password);
-    console.log(user);
     setUser(user);
   }
 
   return <div className='auth'>
-    <h2><em>Inventorizo</em></h2>
+    <h2><em>RPG Weapon Inventory</em></h2>
 
     <form >
       <label onSubmit={handleSignIn}>
