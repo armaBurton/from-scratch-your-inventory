@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../AddInventory.css';
 import { createWeapon } from '../services/fetch-utils';
 import { useHistory } from 'react-router-dom';
@@ -11,8 +11,8 @@ export default function AddInventory(){
   const [bind, setBind] = useState('No Bind');
   const [hand, setHand] = useState(`One-Hand`);
   const [minDamage, setMinDamage] = useState(0);
-  const [maxDamage, setMaxDamage] = useState(minDamage);
-  const [speed, setSpeed] = useState(3.6);
+  const [maxDamage, setMaxDamage] = useState(0);
+  const [speed, setSpeed] = useState(1.8);
   const [dps, setDps] = useState();
   const [durability, setDurability] = useState(100);
   const [description, setDescription] = useState('');
@@ -22,7 +22,8 @@ export default function AddInventory(){
   const [copper, setCopper] = useState(0);
   const history = useHistory();
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
 
     await createWeapon({
       name,
@@ -31,10 +32,10 @@ export default function AddInventory(){
       hand,
       type,
       bind,
-      min_damage: Number(minDamage),
-      max_damage: Number(maxDamage),
-      speed: Number(speed),
-      dps: dps,
+      min_damage: minDamage,
+      max_damage: maxDamage,
+      speed: speed,
+      dps,
       durability,
       level_req:levelReq,
       gold, 
@@ -46,37 +47,37 @@ export default function AddInventory(){
     history.push('/inventory');
   }
 
-  function calculateDPS() {
+  useEffect(() => {
     const sum = (Number(minDamage) + Number(maxDamage));
     const divSpeed = Number(sum) / Number(speed);
     const average = Number(divSpeed) / 2;
     setDps(Number(average));
+  }, [minDamage, maxDamage, speed]);
 
-    dps && handleSubmit();
-  }
-
-  function calculateState(e){
-    e.preventDefault();
-    if (type === 'Dagger'){
-      setSpeed(1.8);
-    } else if (type === 'Wand'){
-      setSpeed(2.0);
-    } else if (type === 'Crossbow' || type === 'Bow' || type === 'Gun') {
-      setSpeed(3.0);
-    } else if (hand === 'One-hand'){
-      setSpeed(2.6);
-    } else if (hand === 'Two-hand'){
-      setSpeed(3.6);
+  useEffect(() => {
+    switch (type){
+      case 'Dagger':
+        setSpeed(1.8);
+        break;
+      case 'Wand':
+        setSpeed(2.0);
+        break;
+      case 'Crossbow':
+      case 'Bow':
+      case 'Gun':
+        setSpeed(3.0);
+        break;
+      case 'Mace':
+      case 'Axe':
+      case 'Sword':
+        hand === 'One-Hand' ? setSpeed(2.6) : setSpeed(3.6);
+        break;
     }
-
-    calculateDPS();
-  }
-  
-  
+  }, [type, hand]);
 
   return (
     <div className='create'>
-      <form onSubmit={calculateState}>
+      <form onSubmit={handleSubmit}>
         <h1>RPG Weapon Creator</h1>
         <label>
           Name:
@@ -100,8 +101,8 @@ export default function AddInventory(){
         <label>
           Hand:
           <select required value={hand} onChange={e => setHand(e.target.value)} >
-            <option>One-hand</option>
-            <option>Two-hand</option>
+            <option>One-Hand</option>
+            <option>Two-Hand</option>
           </select>
         </label>
         <label>
